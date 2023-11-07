@@ -16,6 +16,7 @@ import useToast from "src/hooks/useToast";
 import EventService from "src/services/EventService";
 import { Client } from "src/misc/enums/Client";
 import { saveAs } from "file-saver";
+import { API_PATH } from "src/api";
 
 const IconButtonWrapper = styled(Box)(
   ({ theme }) => `
@@ -59,7 +60,9 @@ export default function TicketCard(props: TicketCardProps) {
     toaster.displayApiResponse(response);
 
     if (response.isOk) {
-      saveAs(response.data.file);
+      const parts = response.data.split("/");
+      const fileName = parts[parts.length - 1];
+      saveAs(`${API_PATH}/${response.data}`, fileName);
     }
   };
 
