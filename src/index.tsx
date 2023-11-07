@@ -1,19 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { BrowserRouter } from 'react-router-dom';
+import ScrollTop from 'src/hooks/useScrollTop';
+import ThemeProvider from './theme/ThemeProvider';
+import 'nprogress/nprogress.css';
+import { Provider } from 'react-redux';
+import store from 'src/store';
+import App from 'src/App';
+import { SnackbarProvider } from 'notistack';
+import { CssBaseline } from '@mui/material';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+ReactDOM.render(
+  <Provider store={store}>
+    <HelmetProvider>
+      <ThemeProvider>
+        <SnackbarProvider
+          maxSnack={6}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right'
+          }}
+        >
+          <BrowserRouter>
+            <ScrollTop />
+            <CssBaseline />
+            <App />
+          </BrowserRouter>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </HelmetProvider>
+  </Provider>,
+  document.getElementById('root')
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

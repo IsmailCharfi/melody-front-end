@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRoutes } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import dayjs from "dayjs";
+import "src/i18n";
+import "dayjs/locale/fr";
+import "dayjs/locale/en";
+import localData from "dayjs/plugin/localeData";
+import { useTranslation } from "react-i18next";
+import router from "src/router";
+import AppInit from "src/components/Init";
+import InternalServelError from "src/pages/Status/InternalServerError";
+import { useDispatch, useSelector } from "src/store";
+import { useEffect } from "react";
+import { LocalstorageKeys } from "./misc/enums/LocalStorage/LocalstorageKeys";
+import { setIsInitialized, setToken, setUser } from "./slices/app";
+import useHttp from "./hooks/useHttp";
+import AuthService from "./services/AuthService";
+import EventService from "./services/EventService";
+import { setEvents } from "./slices/event";
+import useToast from "./hooks/useToast";
+import wait from "./utils/wait";
 
-function App() {
+export default function App() {
+  const { isInitialized } = useSelector((state) => state.app);
+  const [sendRequest] = useHttp();
+  const dispatch = useDispatch();
+  const content = useRoutes(router);
+  const toaster = useToast();
+  const { i18n } = useTranslation();
+
+  dayjs.extend(localData);
+  dayjs.locale(i18n.language);
+
+  useEffect(() => {
+    (async function init() {
+      const token = localStorage.getItem(LocalstorageKeys.TOKEN);
+
+      if (token) {
+        const response = await sendRequest(() =>
+          AuthService.getConnectedUser()
+        );
+
+        if (response.isOk) {
+          dispatch(setToken(token));
+          dispatch(setUser(response.data));
+        }
+      }
+
+      const response = await sendRequest(() => EventService.getEvents());
+
+      if (response.isOk) {
+        dispatch(setEvents(response.data));
+      } else {
+        toaster.displayApiResponse(response);
+      }
+
+      // mock waiting
+      await wait(2000);
+
+      dispatch(setIsInitialized(true));
+    })();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary FallbackComponent={InternalServelError}>
+      {isInitialized ? content : <AppInit />}
+    </ErrorBoundary>
   );
 }
-
-export default App;
