@@ -1,16 +1,19 @@
 import { UserRoles } from "src/misc/enums/User/UserRoles";
-import { Entity } from "src/model/Entity";
+import { Entity } from "./Entity";
+import { Ticket } from "./Ticket";
 
-export default class User extends Entity {
+export class User extends Entity {
   email: string;
 
   password: string;
 
-  firstName: string;
+  firstname: string;
 
-  lastName: string;
+  lastname: string;
 
   roles: UserRoles[];
+
+  tickets: Ticket[];
 
   constructor(data: Partial<User> = null, clone: boolean = false) {
     if (!clone && data instanceof User) return data;
@@ -18,9 +21,10 @@ export default class User extends Entity {
 
     this.email = data?.email ?? "";
     this.password = data?.password ?? "";
-    this.firstName = data?.firstName ?? "";
-    this.lastName = data?.lastName ?? "";
+    this.firstname = data?.firstname ?? "";
+    this.lastname = data?.lastname ?? "";
     this.roles = data?.roles ?? [];
+    this.tickets = data?.tickets?.map((t) => new Ticket(t)) ?? [];
   }
 
   public hasRole(roleToCheck: UserRoles): boolean {
@@ -32,5 +36,9 @@ export default class User extends Entity {
     return rolesToCheck.some(
       (roles) => this.roles.filter((role) => roles.includes(role)).length !== 0
     );
+  }
+
+  public getFullName() {
+    return `${this.firstname} ${this.lastname}`;
   }
 }

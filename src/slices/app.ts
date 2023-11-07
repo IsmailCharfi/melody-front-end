@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LocalstorageKeys } from "src/misc/enums/LocalStorage/LocalstorageKeys";
-import User from "src/model/User";
+import { User } from "src/model/User";
 import type { AppThunk } from "src/store";
 
 interface AppState {
@@ -9,6 +9,7 @@ interface AppState {
   isLoaderOn: boolean;
   isSidebarOpen: boolean;
   isLoginModalOpen: boolean;
+  isRegisterModalOpen: boolean;
   requestCount: number;
   user: User | null;
   token: string | null;
@@ -19,6 +20,7 @@ const initialState: AppState = {
   isLoaderOn: false,
   isSidebarOpen: false,
   isLoginModalOpen: false,
+  isRegisterModalOpen: false,
   requestCount: 0,
   user: null,
   token: null,
@@ -53,6 +55,12 @@ const slice = createSlice({
     },
     closeLoginModal: (state: AppState) => {
       state.isLoginModalOpen = false;
+    },
+    openRegisterModal: (state: AppState) => {
+      state.isRegisterModalOpen = true;
+    },
+    closeRegisterModal: (state: AppState) => {
+      state.isRegisterModalOpen = false;
     },
     setUser(state: AppState, action: PayloadAction<{ user: User | null }>) {
       state.user = action.payload.user;
@@ -98,6 +106,14 @@ export const openLoginModal = (): AppThunk => async (dispatch) => {
 
 export const closeLoginModal = (): AppThunk => async (dispatch) => {
   dispatch(slice.actions.closeLoginModal());
+};
+
+export const openRegisterModal = (): AppThunk => async (dispatch) => {
+  dispatch(slice.actions.openRegisterModal());
+};
+
+export const closeRegisterModal = (): AppThunk => async (dispatch) => {
+  dispatch(slice.actions.closeRegisterModal());
 };
 
 export const setUser =

@@ -3,10 +3,14 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import fr from "./translations/fr";
+import de from "./translations/de";
+import en from "./translations/en";
 import { LocalstorageKeys } from "src/misc/enums/LocalStorage/LocalstorageKeys";
 
 const resources = {
   fr: { translation: fr },
+  de: { translation: de },
+  en: { translation: en },
 };
 
 i18n
@@ -18,7 +22,7 @@ i18n
     detection: {
       order: ["querystring", "localStorage", "navigator"],
       lookupLocalStorage: LocalstorageKeys.LANGUAGE,
-      lookupQuerystring: LocalstorageKeys.LANGUAGE
+      lookupQuerystring: LocalstorageKeys.LANGUAGE,
     },
     keySeparator: false,
     fallbackLng: "en",

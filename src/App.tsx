@@ -15,9 +15,6 @@ import { LocalstorageKeys } from "./misc/enums/LocalStorage/LocalstorageKeys";
 import { setIsInitialized, setToken, setUser } from "./slices/app";
 import useHttp from "./hooks/useHttp";
 import AuthService from "./services/AuthService";
-import EventService from "./services/EventService";
-import { setEvents } from "./slices/event";
-import useToast from "./hooks/useToast";
 import wait from "./utils/wait";
 
 export default function App() {
@@ -25,7 +22,6 @@ export default function App() {
   const [sendRequest] = useHttp();
   const dispatch = useDispatch();
   const content = useRoutes(router);
-  const toaster = useToast();
   const { i18n } = useTranslation();
 
   dayjs.extend(localData);
@@ -43,15 +39,9 @@ export default function App() {
         if (response.isOk) {
           dispatch(setToken(token));
           dispatch(setUser(response.data));
+        } else {
+          localStorage.removeItem(LocalstorageKeys.TOKEN);
         }
-      }
-
-      const response = await sendRequest(() => EventService.getEvents());
-
-      if (response.isOk) {
-        dispatch(setEvents(response.data));
-      } else {
-        toaster.displayApiResponse(response);
       }
 
       // mock waiting

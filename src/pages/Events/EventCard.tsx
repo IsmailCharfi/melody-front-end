@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
-import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
 import Event from "src/model/Event";
+import { I18nKeys } from "src/i18n/translations/I18nKeys";
 
 const CardContainer = styled(Card)(({ theme }) => ({
   textAlign: "center",
@@ -59,7 +59,7 @@ const Label = styled(Box)(
     `
 );
 
-const BgComposed = styled(Box)(
+export const BgComposed = styled(Box)(
   ({ theme }) => `
       position: absolute;
       width: 100%;
@@ -79,6 +79,7 @@ const BgComposed = styled(Box)(
 
 type EventCardProps = {
   event: Event;
+  openDetails: () => void;
 };
 
 export default function EventCard(props: EventCardProps) {
@@ -101,7 +102,7 @@ export default function EventCard(props: EventCardProps) {
             mb: 1,
             border: `${theme.colors.alpha.trueWhite[100]} solid 3px`,
           }}
-          src="/images/logo.png"
+          src={props.event.artistImage}
         />
         <Typography
           variant="h4"
@@ -110,7 +111,7 @@ export default function EventCard(props: EventCardProps) {
             color: `${theme.colors.alpha.trueWhite[100]}`,
           }}
         >
-          Darrell Devlin
+          {props.event.artist}
         </Typography>
         <Typography
           variant="subtitle2"
@@ -119,9 +120,10 @@ export default function EventCard(props: EventCardProps) {
             color: `${theme.colors.alpha.trueWhite[70]}`,
           }}
         >
-          Senior UX Developer, Slack.com
+          {props.event.name}
         </Typography>
         <Button
+          onClick={() => props.openDetails()}
           sx={{
             px: 2.5,
             borderRadius: 10,
@@ -139,9 +141,8 @@ export default function EventCard(props: EventCardProps) {
           }}
           variant="contained"
           color="info"
-          startIcon={<AccountBoxTwoToneIcon />}
         >
-          {t("View profile")}
+          {t(I18nKeys.SHOW_DETAILS)}
         </Button>
       </BgComposed>
       <CardMedia
@@ -152,8 +153,7 @@ export default function EventCard(props: EventCardProps) {
           position: "relative",
           zIndex: 5,
         }}
-        image="/images/logo.png"
-        alt="..."
+        image={props.event.image}
       />
       <CardActions
         sx={{
@@ -169,7 +169,7 @@ export default function EventCard(props: EventCardProps) {
             color: `${theme.palette.info.contrastText}`,
           }}
         >
-          {t("Travel")}
+          {props.event.category}
         </Label>
       </CardActions>
     </CardContainer>

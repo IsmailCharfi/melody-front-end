@@ -1,0 +1,7 @@
+export enum DateTimeFormat {
+    DISPLAY_DATE_FORMAT = 'DD/MM/YYYY',
+    API_DATE_FORMAT = 'YYYY-MM-DD',
+    DISPLAY_DATE_TIME_FORMAT = 'DD/MM/YYYY HH:mm',
+    API_DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm',
+  }
+  

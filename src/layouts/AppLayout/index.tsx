@@ -31,7 +31,7 @@ const MainWrapper = styled(Box)(
 
 const MainContent = styled(Container)(
   ({ theme }) => `
-        margin-top: ${theme.spacing(-35)};
+        margin-top: ${theme.spacing(-45)};
         position: relative;
         z-index: 55;
 `

@@ -60,7 +60,9 @@ export default function LanguageSwitcher() {
   const French = <FR title={t(I18nKeys.FRENCH)} />;
 
   return (
-    <BoxButton sx={{ width: "100%", p: 0 }}>
+    <BoxButton
+      sx={{ width: "100%", p: 0, display: "flex", justifyContent: "center" }}
+    >
       <IconButtonPrimary ref={ref} onClick={handleOpen}>
         {isGerman(lang) && German}
         {isEnglish(lang) && English}

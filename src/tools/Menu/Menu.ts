@@ -1,4 +1,4 @@
-import User from "src/model/User";
+import { User } from "src/model/User";
 import MenuBlock from "./MenuBlock";
 import { menuBlocks } from "./menuBlocks";
 

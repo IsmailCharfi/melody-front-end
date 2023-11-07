@@ -1,4 +1,5 @@
 import { Box, Tab, Tabs, styled } from "@mui/material";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const TabsWrapper = styled(Tabs)(
@@ -15,31 +16,38 @@ const TabsWrapper = styled(Tabs)(
         `
 );
 
-type NavTab = {
-  id: number;
-  label: string;
-};
-
 type NavTabsProps = {
-  tabs: NavTab[];
-  onChange: (tab: NavTab) => void;
+  tabs: string[];
+  onChange: (tab: string) => void;
 };
 
 export default function NavTabs(props: NavTabsProps) {
   const { t } = useTranslation();
+  const [selectedTab, setSelectedTab] = useState<string>(
+    props.tabs.length ? props.tabs[0] : null
+  );
+
+  if (!selectedTab) {
+    return <></>;
+  }
+
+  const onChange = (tab: string) => {
+    setSelectedTab(tab);
+    props.onChange(tab);
+  };
 
   return (
     <Box sx={{ m: 1 }}>
       <TabsWrapper
-        onChange={(_, tab) => props.onChange(tab)}
-        value={props.tabs[0]}
+        onChange={(_, tab) => onChange(tab)}
+        value={selectedTab}
         scrollButtons="auto"
         allowScrollButtonsMobile
         textColor="secondary"
         variant="scrollable"
       >
-        {props.tabs.map((tab: NavTab) => (
-          <Tab key={tab.id} value={tab} label={t(tab.label)} />
+        {props.tabs.map((tab: string, index: number) => (
+          <Tab key={index} value={tab} label={t(tab)} />
         ))}
       </TabsWrapper>
     </Box>

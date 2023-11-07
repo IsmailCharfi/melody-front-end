@@ -1,4 +1,4 @@
-const DEV_PORT = '8000';
+const DEV_PORT = '5000';
 const localDomains = [
   '[::1]',
   'localhost',
@@ -10,4 +10,4 @@ const prodUrl = `api.${location}`;
 
 export const devMode = localDomains.includes(location);
 
-export const API_PATH = `https://${devMode ? `${location}:${DEV_PORT}` : prodUrl}`;
+export const API_PATH = `http://${devMode ? `${location}:${DEV_PORT}` : prodUrl}`;

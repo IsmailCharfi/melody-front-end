@@ -57,7 +57,7 @@ export default function SidebarMenuItem({
   ...rest
 }: SidebarMenuItemProps) {
   const [menuToggle, setMenuToggle] = useState<boolean>(openParent);
-  const { t }: { t: any } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const toggleMenu = (): void => {
     setMenuToggle((Open) => !Open);

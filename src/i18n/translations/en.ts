@@ -1,0 +1,43 @@
+import { I18nKeys } from "./I18nKeys";
+
+const en: { [key in I18nKeys]: string } = {
+  [I18nKeys.APP_NAME]: "Melody",
+  [I18nKeys.SERVER_ERROR]: "An error occurred",
+  [I18nKeys.RELOAD]: "Reload",
+  [I18nKeys.VIEW]: "View",
+  [I18nKeys.FETCH_SUCCESS]: "Success",
+  [I18nKeys.FETCH_FAILURE]: "Failure",
+  [I18nKeys.GO_BACK]: "Go back",
+  [I18nKeys.UNDER_CONSTRUCTION]: "Under construction",
+  [I18nKeys.NOT_FOUND]: "Page not found",
+  [I18nKeys.ACCESS_DENIED]: "Access denied",
+  [I18nKeys.TEXT_ACCESS_DENIED]:
+    "It seems you do not have access to this page.",
+  [I18nKeys.LOGOUT]: "Logout",
+  [I18nKeys.LOGIN]: "Login",
+  [I18nKeys.REGISTER]: "Register",
+  [I18nKeys.CLOSE]: "Close",
+  [I18nKeys.GERMAN]: "German",
+  [I18nKeys.ENGLISH]: "English",
+  [I18nKeys.FRENCH]: "French",
+  [I18nKeys.FIRSTNAME]: "First Name",
+  [I18nKeys.LASTNAME]: "Last Name",
+  [I18nKeys.EMAIL]: "Email",
+  [I18nKeys.PASSWORD]: "Password",
+  [I18nKeys.SUBMIT]: "Submit",
+  [I18nKeys.EVENTS]: "Events",
+  [I18nKeys.MY_TICKETS]: "My Tickets",
+  [I18nKeys.ALL]: "All",
+  [I18nKeys.EMPTY]: "No data found",
+  [I18nKeys.SHOW_DETAILS]: "Show Details",
+  [I18nKeys.BOOK]: "Book",
+  [I18nKeys.ADD_TO_GOOGLE_WALLET]: "Add to Google Wallet",
+  [I18nKeys.ADD_TO_APPLE_WALLET]: "Add to Apple Wallet",
+  [I18nKeys.USER_NOT_FOUND]: "User not found",
+  [I18nKeys.WRONG_CREDENTIALS]: "Incorrect email or password",
+  [I18nKeys.USER_ALREADY_EXISTS]: "User already exists",
+  [I18nKeys.UNAUTHORIZED]: "Unauthorized",
+  [I18nKeys.PLACES_LEFT]: "Places left",
+};
+
+export default en;

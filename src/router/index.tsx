@@ -1,9 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router";
 import { Navigate } from "react-router-dom";
-import Guest from "src/components/Guards/Guest";
 import { LazyLoader } from "src/components/LazyLoader";
-import AuthLayout from "src/layouts/AuthLayout";
 import TopNavigationLayout from "src/layouts/AppLayout";
 import NotFound from "src/pages/Status/NotFound";
 import { EVENTS_PATH, RouteParts } from "src/router/routes";
@@ -12,16 +10,11 @@ const EventsList = LazyLoader(
   lazy(() => import("src/pages/Events/EventsList"))
 );
 
+const MyTickets = LazyLoader(
+  lazy(() => import("src/pages/MyTickets/MyTickets"))
+);
+
 const router: RouteObject[] = [
-  {
-    path: RouteParts.AUTH,
-    element: (
-      <Guest>
-        <AuthLayout />
-      </Guest>
-    ),
-    children: [],
-  },
   {
     path: RouteParts.ROOT,
     element: <TopNavigationLayout />,
@@ -32,29 +25,11 @@ const router: RouteObject[] = [
       },
       {
         path: RouteParts.EVENTS,
-        children: [
-          {
-            path: RouteParts.BLANK,
-            element: <EventsList />,
-          },
-          {
-            path: RouteParts.DYNAMIC_ID,
-            element: <></>,
-          },
-        ],
+        element: <EventsList />,
       },
       {
         path: RouteParts.TICKETS,
-        children: [
-          {
-            path: RouteParts.BLANK,
-            element: <></>,
-          },
-          {
-            path: RouteParts.DYNAMIC_ID,
-            element: <></>,
-          },
-        ],
+        element: <MyTickets />,
       },
     ],
   },

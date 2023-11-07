@@ -1,0 +1,43 @@
+import { I18nKeys } from "./I18nKeys";
+
+const de: { [key in I18nKeys]: string } = {
+  [I18nKeys.APP_NAME]: "Melody",
+  [I18nKeys.SERVER_ERROR]: "Ein Fehler ist aufgetreten",
+  [I18nKeys.RELOAD]: "Neu laden",
+  [I18nKeys.VIEW]: "Ansehen",
+  [I18nKeys.FETCH_SUCCESS]: "Erfolg",
+  [I18nKeys.FETCH_FAILURE]: "Fehler",
+  [I18nKeys.GO_BACK]: "Zurück",
+  [I18nKeys.UNDER_CONSTRUCTION]: "Im Aufbau",
+  [I18nKeys.NOT_FOUND]: "Seite nicht gefunden",
+  [I18nKeys.ACCESS_DENIED]: "Zugriff verweigert",
+  [I18nKeys.TEXT_ACCESS_DENIED]:
+    "Es scheint, dass Sie keinen Zugriff auf diese Seite haben.",
+  [I18nKeys.LOGOUT]: "Abmelden",
+  [I18nKeys.LOGIN]: "Anmelden",
+  [I18nKeys.REGISTER]: "Registrieren",
+  [I18nKeys.CLOSE]: "Schließen",
+  [I18nKeys.GERMAN]: "Deutsch",
+  [I18nKeys.ENGLISH]: "Englisch",
+  [I18nKeys.FRENCH]: "Französisch",
+  [I18nKeys.FIRSTNAME]: "Vorname",
+  [I18nKeys.LASTNAME]: "Nachname",
+  [I18nKeys.EMAIL]: "E-Mail",
+  [I18nKeys.PASSWORD]: "Passwort",
+  [I18nKeys.SUBMIT]: "Speichern",
+  [I18nKeys.EVENTS]: "Veranstaltungen",
+  [I18nKeys.MY_TICKETS]: "Meine Tickets",
+  [I18nKeys.ALL]: "Alle",
+  [I18nKeys.EMPTY]: "Keine Daten gefunden",
+  [I18nKeys.SHOW_DETAILS]: "Details anzeigen",
+  [I18nKeys.BOOK]: "Buchen",
+  [I18nKeys.ADD_TO_GOOGLE_WALLET]: "Zu Google Wallet hinzufügen",
+  [I18nKeys.ADD_TO_APPLE_WALLET]: "Zu Apple Wallet hinzufügen",
+  [I18nKeys.USER_NOT_FOUND]: "Benutzer nicht gefunden",
+  [I18nKeys.WRONG_CREDENTIALS]: "Falsche E-Mail oder Passwort",
+  [I18nKeys.USER_ALREADY_EXISTS]: "Benutzer existiert bereits",
+  [I18nKeys.UNAUTHORIZED]: "Nicht autorisiert",
+  [I18nKeys.PLACES_LEFT]: "Plätze übrig",
+};
+
+export default de;

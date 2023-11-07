@@ -18,6 +18,7 @@ import { openSidebar } from "src/slices/app";
 import UserBox from "./Buttons/UserBox";
 import LoginButton from "./Buttons/LoginButton";
 import LanguageSwitcher from "./Buttons/LanguageSwitcher";
+import RegisterButton from "./Buttons/RegisterButton";
 
 const TopBarWrapper = styled(Card)(
   ({ theme }) => `
@@ -151,11 +152,18 @@ function TopBar() {
       <Container sx={{ zIndex: 6 }} maxWidth="xl">
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box display="flex">
-            <Logo full/>
+            <Logo full />
           </Box>
           <Stack direction={"row"} gap={1}>
             <LanguageSwitcher />
-            {user ? <UserBox /> : <LoginButton />}
+            {user ? (
+              <UserBox />
+            ) : (
+              <Stack direction={"row"} gap={1}>
+                <LoginButton />
+                <RegisterButton />
+              </Stack>
+            )}
             {user && (
               <Box
                 component="span"

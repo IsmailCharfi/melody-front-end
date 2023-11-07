@@ -6,6 +6,7 @@ import Modal from "src/components/Modal";
 import { useDispatch, useSelector } from "src/store";
 import { closeLoginModal, openLoginModal } from "src/slices/app";
 import { BoxButton } from "src/layouts/AppLayout/TopBar";
+import LoginPage from "src/pages/Auth/LoginPage";
 
 export default function LoginButton() {
   const { isLoginModalOpen } = useSelector((state) => state.app);
@@ -21,10 +22,11 @@ export default function LoginButton() {
         </Stack>
       </BoxButton>
       <Modal
+        size="lg"
         open={isLoginModalOpen}
         title={t(I18nKeys.LOGIN)}
         handleClose={() => dispatch(closeLoginModal())}
-        body={<>test</>}
+        body={<LoginPage noTitle />}
         noControls
       />
     </>

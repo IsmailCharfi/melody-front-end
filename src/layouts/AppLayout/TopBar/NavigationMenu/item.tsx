@@ -1,6 +1,6 @@
-import { useState, MouseEvent } from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
-import clsx from 'clsx';
+import { useState, MouseEvent } from "react";
+import { NavLink as RouterLink } from "react-router-dom";
+import clsx from "clsx";
 import {
   IconButton,
   Box,
@@ -8,13 +8,14 @@ import {
   Popover,
   darken,
   ListItem,
-  styled
-} from '@mui/material';
-import KeyboardArrowDownTwoToneIcon from '@mui/icons-material/KeyboardArrowDownTwoTone';
-import KeyboardArrowUpTwoToneIcon from '@mui/icons-material/KeyboardArrowUpTwoTone';
-import Scrollbar from 'src/components/Scrollbar';
-import { useDispatch } from 'src/store';
-import { closeSidebar } from 'src/slices/app';
+  styled,
+} from "@mui/material";
+import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
+import KeyboardArrowUpTwoToneIcon from "@mui/icons-material/KeyboardArrowUpTwoTone";
+import Scrollbar from "src/components/Scrollbar";
+import { useDispatch } from "src/store";
+import { closeSidebar } from "src/slices/app";
+import { useTranslation } from "react-i18next";
 
 const IndicatorWrapper = styled(Box)(
   () => `
@@ -62,7 +63,7 @@ const PopoverWrapper = styled(Popover)(
         }
 
         .name-wrapper {
-          transition: ${theme.transitions.create(['all'])};
+          transition: ${theme.transitions.create(["all"])};
 
           color: ${darken(theme.sidebar.menuItemColor, 0.3)} !important;
         }
@@ -104,6 +105,7 @@ export default function NavigationMenuItem({
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const { t } = useTranslation();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -116,7 +118,7 @@ export default function NavigationMenuItem({
       <ListItem component="div" className="Mui-children" key={name} {...rest}>
         <IconButton className={clsx({ active: open })} onClick={handleClick}>
           {Icon && <Icon />}
-          <span className="name-wrapper">{name}</span>
+          <span className="name-wrapper">{t(name)}</span>
           <IndicatorWrapper>
             {open ? (
               <KeyboardArrowUpTwoToneIcon />
@@ -124,21 +126,21 @@ export default function NavigationMenuItem({
               <KeyboardArrowDownTwoToneIcon />
             )}
           </IndicatorWrapper>
-          {badge === '' ? (
+          {badge === "" ? (
             <Badge color="primary" variant="dot" />
           ) : (
             <Badge badgeContent={badge} />
           )}
         </IconButton>
         <PopoverWrapper
-          classes={{ root: 'child-popover' }}
+          classes={{ root: "child-popover" }}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center'
+            vertical: "bottom",
+            horizontal: "center",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center'
+            vertical: "top",
+            horizontal: "center",
           }}
           anchorEl={anchorEl}
           onClose={handleClose}
@@ -148,7 +150,7 @@ export default function NavigationMenuItem({
           <Box
             sx={{
               width: 260,
-              height: 295
+              height: 295,
             }}
           >
             <Scrollbar>{children}</Scrollbar>
@@ -166,8 +168,8 @@ export default function NavigationMenuItem({
         to={link}
       >
         {Icon && <Icon />}
-        <span className="name-wrapper">{name}</span>
-        {badge === '' ? (
+        <span className="name-wrapper">{t(name)}</span>
+        {badge === "" ? (
           <Badge color="primary" variant="dot" />
         ) : (
           <Badge badgeContent={badge} />

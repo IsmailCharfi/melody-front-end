@@ -87,7 +87,7 @@ export default class Fetcher {
       requestHeaders.append(header, headerValue)
     );
 
-    options?.headers.forEach((header: string) =>
+    options?.headers?.forEach((header: string) =>
       requestHeaders.append(header, options?.headers[header])
     );
 
