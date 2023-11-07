@@ -26,7 +26,7 @@ export default class EventService {
   }
 
   static async generateWalletTicket(ticket: Ticket, client: Client) {
-    const response = await fetcher.post<string>(
+    const response = await fetcher.post<{ file: string }>(
       `/tickets/${ticket.id}/generate`,
       {
         client,

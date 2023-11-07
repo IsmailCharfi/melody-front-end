@@ -59,7 +59,7 @@ export default function TicketCard(props: TicketCardProps) {
     toaster.displayApiResponse(response);
 
     if (response.isOk) {
-      saveAs(response.data);
+      saveAs(response.data.file);
     }
   };
 
