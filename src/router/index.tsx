@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router";
 import { Navigate } from "react-router-dom";
+import Authenticated from "src/components/Guards/Authenticated";
 import { LazyLoader } from "src/components/LazyLoader";
 import TopNavigationLayout from "src/layouts/AppLayout";
 import NotFound from "src/pages/Status/NotFound";
@@ -29,7 +30,11 @@ const router: RouteObject[] = [
       },
       {
         path: RouteParts.TICKETS,
-        element: <MyTickets />,
+        element: (
+          <Authenticated>
+            <MyTickets />
+          </Authenticated>
+        ),
       },
     ],
   },
