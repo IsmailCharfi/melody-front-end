@@ -1,3 +1,4 @@
+import { API_PATH } from "src/api";
 import { Entity } from "./Entity";
 
 export default class Event extends Entity {
@@ -8,7 +9,6 @@ export default class Event extends Entity {
   place: string;
 
   description: string;
-
 
   artist: string;
 
@@ -29,8 +29,8 @@ export default class Event extends Entity {
     this.place = data?.place ?? "";
     this.description = data?.description ?? "";
     this.artist = data?.artist ?? "";
-    this.image = data?.image ?? "";
-    this.artistImage = data?.artistImage ?? "";
+    this.image = data?.image ? API_PATH + data?.image : "";
+    this.artistImage = data?.artistImage ? API_PATH + data?.artistImage : "";
     this.date = data?.date ?? "";
     this.category = data?.category ?? "";
   }

@@ -155,6 +155,7 @@ export default function TicketCard(props: TicketCardProps) {
           zIndex: 5,
         }}
         image={props.ticket.event.image}
+        crossOrigin="anonymous"
       />
     </Card>
   );

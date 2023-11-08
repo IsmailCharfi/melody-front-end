@@ -102,7 +102,12 @@ export default function EventDetails(props: EventDetailsProps) {
   return (
     <>
       <Box sx={{ position: "relative", maxWidth: "30rem" }}>
-        <CardMedia component="img" height="250" image={props.event.image} />
+        <CardMedia
+          component="img"
+          height="250"
+          image={props.event.image}
+          crossOrigin="anonymous"
+        />
         <CardActions
           sx={{
             bottom: "auto",
@@ -134,6 +139,9 @@ export default function EventDetails(props: EventDetailsProps) {
           sx={{
             boxShadow: "none",
             borderWidth: 5,
+          }}
+          imgProps={{
+            crossOrigin: "anonymous",
           }}
           src={props.event.artistImage}
         />

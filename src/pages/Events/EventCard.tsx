@@ -102,6 +102,9 @@ export default function EventCard(props: EventCardProps) {
             mb: 1,
             border: `${theme.colors.alpha.trueWhite[100]} solid 3px`,
           }}
+          imgProps={{
+            crossOrigin: "anonymous",
+          }}
           src={props.event.artistImage}
         />
         <Typography
@@ -153,6 +156,7 @@ export default function EventCard(props: EventCardProps) {
           position: "relative",
           zIndex: 5,
         }}
+        crossOrigin="anonymous"
         image={props.event.image}
       />
       <CardActions
