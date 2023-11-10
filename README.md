@@ -17,7 +17,7 @@ git clone https://github.com/IsmailCharfi/melody-front-end.git
 2. Install dependencies:
 
 ```bash
-cd melody-frontend
+cd melody-front-end
 npm install
 ```
 
